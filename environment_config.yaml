@@ -1,0 +1,5 @@
+attributes:
+  metadata:
+    label: Remove OVS usage from host network topology
+    description: Override network_scheme for remove OVS usage. Also set global 'use_ovs' variable to False
+    group: 'other'

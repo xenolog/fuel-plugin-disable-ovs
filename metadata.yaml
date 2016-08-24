@@ -1,0 +1,50 @@
+# Plugin name
+name: fuel-plugin-disable-ovs
+# Human-readable name for your plugin
+title: Remove OVS usage from host network topology
+# Plugin version
+version: '1.0.1'
+# Description
+description: Override network_scheme for remove OVS usage. Also set global 'use_ovs' variable to False
+# Required fuel version
+fuel_version:
+  - '9.0'
+  - '9.1'
+  - '9.2'
+# Specify license of your plugin
+licenses:
+  - Apache License Version 2.0
+# Specify author or company name
+authors:
+  - Sergey Vasilenko (svasilenko@mirantis.com)
+# A link to the plugin's page
+homepage: 'https://github.com/xenolog/fuel-plugin-disable-ovs'
+# Specify a group which your plugin implements, possible options:
+# network, storage, storage::cinder, storage::glance, hypervisor,
+# equipment
+groups:
+  - network
+# Change `false` to `true` if the plugin can be installed in the environment
+# after the deployment.
+is_hotpluggable: false
+
+# The plugin is compatible with releases in the list
+releases:
+  - os: ubuntu
+    version: mitaka-9.0
+    mode: ['ha']
+    deployment_scripts_path: deployment_scripts/
+    repository_path: repositories/ubuntu
+  - os: ubuntu
+    version: mitaka-9.1
+    mode: ['ha']
+    deployment_scripts_path: deployment_scripts/
+    repository_path: repositories/ubuntu
+  - os: ubuntu
+    version: mitaka-9.2
+    mode: ['ha']
+    deployment_scripts_path: deployment_scripts/
+    repository_path: repositories/ubuntu
+
+# Version of plugin package
+package_version: '4.0.0'

@@ -1,0 +1,14 @@
+- id: mangle_network_scheme_for_remove_ovs_usage
+  type: puppet
+  version: 2.1.0
+  groups: ["/.*/"]
+  required_for:
+    - globals
+  requires:
+    - hiera
+  reexecute_on:
+    - deploy_changes
+  parameters:
+    puppet_manifest: puppet/manifests/mangle_network_scheme_for_remove_ovs_usage.pp
+    puppet_modules: puppet/modules:/etc/puppet/modules
+    timeout: 3600
