@@ -31,6 +31,9 @@ Puppet::Parser::Functions::newfunction( :mangle_network_scheme_for_remove_ovs_us
     end
 
     network_scheme = argv[0]
+    rv = {
+      'use_ovs' => false
+    }
     overrides = []
 
     network_scheme['transformations'].each do |tr|
@@ -51,8 +54,12 @@ Puppet::Parser::Functions::newfunction( :mangle_network_scheme_for_remove_ovs_us
       end
     end
 
-    network_scheme['transformations'] += overrides if ! overrides.empty?
+    if ! overrides.empty?
+      rv['network_scheme'] = {
+        'transformations' => overrides
+      }
+    end
 
-    return { 'network_scheme' => network_scheme }.to_yaml() + "\n"
+    return rv.to_yaml() + "\n"
 end
 # vim: set ts=2 sw=2 et :

@@ -13,14 +13,10 @@ if $plugin_settings['metadata']['enabled'] {
   } else {
     $network_name = $plugin_settings['network_name']
   }
-  $mangled_network_scheme = mangle_network_scheme_for_remove_ovs_usage(
-    $network_scheme
-  )
+  $overrides = mangle_network_scheme_for_remove_ovs_usage($network_scheme)
   file {"/etc/hiera/plugins/${plugin_name}.yaml":
     ensure  => file,
-    content => inline_template(
-      "<%= @mangled_network_scheme %>\n  use_ovs: false\n"
-    )
+    content => inline_template("<%= @overrides %>")
   }
 }
 # vim: set ts=2 sw=2 et :
